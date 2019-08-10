@@ -8,49 +8,31 @@
         android:id="@+id/const_layout"
         tools:context=".MainActivity">
 
-    <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/exoPlayerView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            app:controller_layout_id="@layout/custom_playback_control"
-            app:layout_constraintEnd_toEndOf="parent"
+    <ImageView android:layout_width="300dp" android:layout_height="300dp"
+               android:src="@drawable/ic_launcher_background" app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               android:layout_marginTop="30dp"
+               app:layout_constraintTop_toTopOf="parent" android:id="@+id/imageView"/>
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="방송하기"
+            android:id="@+id/btn_broadcast"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
-    </com.google.android.exoplayer2.ui.PlayerView>
+            android:backgroundTint="#FFD3D3"
+            app:layout_constraintEnd_toStartOf="@+id/btn_live"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"/>
 
-
-
-    <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:layout_margin="5dp"
-              android:inputType="textUri"
-              android:id="@+id/et_rtp_url"
-              android:hint="rtp 주소"
-              android:gravity="center"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintTop_toBottomOf="@+id/surfaceView"/>
-
-    <SurfaceView android:layout_width="match_parent" android:layout_height="250dp"
-                 android:id="@+id/surfaceView"
-                 app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:id="@+id/b_start_stop"
-            android:text="Stream"
-            app:layout_constraintTop_toBottomOf="@+id/et_rtp_url" android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/b_switch_camera"
-            android:layout_marginEnd="8dp"/>
-
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:id="@+id/b_switch_camera"
-            android:text="Switch"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/b_start_stop"
-            app:layout_constraintTop_toBottomOf="@+id/et_rtp_url"/>
-
-
-
-
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시청하기"
+            android:id="@+id/btn_live"
+            android:backgroundTint="#FFD3D3"
+            app:layout_constraintStart_toEndOf="@+id/btn_broadcast"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
