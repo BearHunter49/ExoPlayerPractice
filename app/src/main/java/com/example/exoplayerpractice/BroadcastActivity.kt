@@ -2,9 +2,11 @@ package com.example.exoplayerpractice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.SurfaceHolder
 import android.view.WindowManager
 import android.widget.Toast
+import com.pedro.encoder.input.video.CameraHelper
 import com.pedro.encoder.input.video.CameraOpenException
 import com.pedro.rtplibrary.rtmp.RtmpCamera2
 import kotlinx.android.synthetic.main.activity_broadcast.*
@@ -12,7 +14,7 @@ import net.ossrs.rtmp.ConnectCheckerRtmp
 
 class BroadcastActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder.Callback {
     private lateinit var rtmpCamera2: RtmpCamera2
-    private val streamUrl = "rtmp://15.164.172.186:1935/bylive/stream"
+    private val streamUrl = "rtmp://13.125.40.80:1935/dnbn/Test"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,14 +22,22 @@ class BroadcastActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder
         setContentView(R.layout.activity_broadcast)
 
         // Instance create
-        rtmpCamera2 = RtmpCamera2(surfaceView, this)
-        surfaceView.holder.addCallback(this)
-
+        rtmpCamera2 = RtmpCamera2(openglView, this)
+        openglView.holder.addCallback(this)
 
         // ---Button----
         btn_stream.setOnClickListener {
             if (!rtmpCamera2.isStreaming) {
-                if (rtmpCamera2.prepareAudio() && rtmpCamera2.prepareVideo()) {
+                if (rtmpCamera2.prepareAudio() && rtmpCamera2.prepareVideo(
+                        640,
+                        480,
+                        30,
+                        1200 * 1024,
+                        false,
+                        CameraHelper.getCameraOrientation(this)
+                    )
+                ) {
+                    Log.d("whatthe", CameraHelper.getCameraOrientation(this).toString())
                     btn_stream.text = "stop"
                     rtmpCamera2.startStream(streamUrl)
                 } else {
@@ -47,7 +57,6 @@ class BroadcastActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder
             }
         }
     }
-
 
 
     // Implement Method
@@ -84,7 +93,7 @@ class BroadcastActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder
     }
 
     override fun surfaceDestroyed(p0: SurfaceHolder?) {
-        if (rtmpCamera2.isStreaming){
+        if (rtmpCamera2.isStreaming) {
             rtmpCamera2.stopStream()
 //            btn_stream.text = "start"
         }

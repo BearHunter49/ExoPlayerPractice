@@ -7,42 +7,38 @@
         android:layout_height="match_parent"
         tools:context=".BroadcastActivity">
 
-    <FrameLayout
+
+    <com.pedro.rtplibrary.view.LightOpenGlView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/openglView"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="100dp"
     >
-        <SurfaceView android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:id="@+id/surfaceView"
-                     app:layout_constraintTop_toTopOf="parent"/>
 
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center"
-                        android:layout_marginBottom="100dp"
-        >
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/btn_stream"
+                android:text="start"
+                android:textSize="20sp"
+                android:backgroundTint="#EC3636"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_marginLeft="80dp"
+                android:layout_alignParentStart="true"/>
 
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:id="@+id/btn_stream"
-                    android:text="start"
-                    android:textSize="20sp"
-                    android:backgroundTint="#EC3636"
-                    style="@android:style/Widget.Button.Inset"
-                    android:layout_marginLeft="80dp"
-                    android:layout_alignParentStart="true"/>
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/btn_switch"
+                android:text="switch"
+                android:textSize="20sp"
+                android:backgroundTint="#EC3636"
+                style="@android:style/Widget.Button.Inset"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="80dp"/>
 
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:id="@+id/btn_switch"
-                    android:text="switch"
-                    android:textSize="20sp"
-                    android:backgroundTint="#EC3636"
-                    style="@android:style/Widget.Button.Inset"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="80dp"/>
-
-        </RelativeLayout>
-
-
-    </FrameLayout>
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

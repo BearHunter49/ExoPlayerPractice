@@ -17,7 +17,7 @@ class LiveActivity : AppCompatActivity() {
     var currentWindow = 0
     var playbackPosition = 0L
     var playWhenReady = true
-    private val Url = "https://sywblelzxjjjqz.data.mediastore.ap-northeast-2.amazonaws.com/MThunter/main.m3u8"
+    private val Url = "https://sywblelzxjjjqz.data.mediastore.ap-northeast-2.amazonaws.com/Test/main.m3u8"
     lateinit var player: SimpleExoPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +37,7 @@ class LiveActivity : AppCompatActivity() {
         releasePlayer()
     }
 
-
+    // player setting
     private fun initializePlayer() {
         player = ExoPlayerFactory.newSimpleInstance(this.applicationContext)
         exoPlayerView.player = player
@@ -52,11 +52,13 @@ class LiveActivity : AppCompatActivity() {
         player.playWhenReady = playWhenReady
     }
 
+    // media Source
     private fun buildMediaSource(parse: Uri?): MediaSource {
         val userAgent = Util.getUserAgent(this, "BearHunter")
         return HlsMediaSource.Factory(DefaultHttpDataSourceFactory(userAgent)).createMediaSource(parse)
     }
 
+    // release Part
     private fun releasePlayer() {
         playbackPosition = player.currentPosition
         currentWindow = player.currentWindowIndex
