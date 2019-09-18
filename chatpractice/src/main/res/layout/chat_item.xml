@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="chatitem"
+                  type="com.example.chatpractice.ChatData"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@{chatitem.id}"
+                  android:textColor="#C2C2C2"
+                  android:textStyle="bold"
+                  android:id="@+id/txt_id"
+                  android:textSize="20sp"
+                  android:layout_margin="5dp"
+        />
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@{chatitem.text}"
+                  android:layout_margin="5dp"
+                  android:textColor="@android:color/white"
+                  android:id="@+id/txt_text"
+                  android:textSize="15sp"
+        />
+
+
+
+    </LinearLayout>
+</layout>
